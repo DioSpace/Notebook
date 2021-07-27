@@ -1,0 +1,244 @@
+Flutter UI
+
+
+TextView	:文本显示控件
+Text('文本显示')
+
+
+RichText	:富文本显示控件
+RichText(
+    text: TextSpan(style: TextStyle(fontSize: 18), children: [
+      TextSpan(text: "红色", style: TextStyle(color: Colors.red)),
+      TextSpan(
+        text: "加粗",
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      TextSpan(
+        text: "字号+",
+        style: TextStyle(color: Colors.black, fontSize: 25.0),
+      ),
+      TextSpan(
+        text: "字号-",
+        style: TextStyle(color: Colors.black, fontSize: 12.0),
+      ),
+    ]),
+    textDirection: TextDirection.ltr,
+  )
+
+
+TextField	:文本输入控件
+TextField(obscureText: true)
+
+
+MaterialButton		:扁平化按钮
+new MaterialButton(
+  color: Colors.blue,
+  textColor: Colors.white,
+  child: new Text('MaterialButton'),
+  onPressed: () {},
+)
+
+
+FlatButton			:扁平化按钮(背景透明)
+new FlatButton(
+  child: new Text('FlatButton'),
+  onPressed: () {},
+)
+
+
+RaisedButton		:凸起按钮
+new RaisedButton(
+  child: new Text('RaisedButton'),
+  onPressed: () {},
+)
+
+
+OutlineButton		:线框按钮
+new OutlineButton(
+    borderSide: new BorderSide(color: Theme.of(context).primaryColor),
+    child: new Text(
+      '线框按钮',
+    ),
+    onPressed: () {},
+  )
+
+
+IconButton			:图片按钮
+1.cons里自带图标加载
+new IconButton(
+  icon: new Icon(Icons.add_circle),
+  onPressed: () {},
+)
+2.从本地指定目录下加载
+new IconButton(
+  icon: ImageIcon(AssetImage("images/test.png")),
+  onPressed: () {},
+)
+
+
+FloatingActionButton		:悬浮按钮
+new FloatingActionButton(
+  child: new Icon(Icons.add_a_photo),
+  onPressed: () {},
+),
+
+
+Switch				:开关
+Switch(
+    activeColor: Colors.white,
+    activeTrackColor: Colors.green,
+    inactiveThumbColor: Colors.white,
+    inactiveTrackColor: Colors.grey,
+    value: true,
+    onChanged: (bool v) {},
+  )
+
+
+CupertinoSwitch			:IOS风格开关控件
+new CupertinoSwitch(
+    value: true,
+    onChanged: (bool value) {},
+  )
+
+
+SwitchListTile			:带标题开关
+new SwitchListTile(
+      secondary: const Icon(Icons.airplanemode_active),
+      title: const Text('带标题开关'),
+      value: this.isSwitchSelected,
+      onChanged: (bool value) {
+        setState(() {
+          this.isSwitchSelected = value;
+        });
+      },
+    )
+
+
+Radio			:单选框
+new Radio(
+      groupValue: this.radioValue,
+      activeColor: Colors.blue,
+      value: '用户选择值',
+      onChanged: (String val) {
+        this.setState(() {
+          this.radioValue = val;
+        });
+      },
+    )
+多个单选框,可以以任何形式排列在一起,供用户选择.
+Row(
+      children: <Widget>[
+        Radio<String>(
+            value: "单选框值1",
+            groupValue: radioValue,
+            onChanged: (val) {
+              setState(() {
+                radioValue = val;
+              });
+            }),
+        Radio<String>(
+            value: "单选框值2",
+            groupValue: radioValue,
+            onChanged: (val) {
+              setState(() {
+                radioValue = val;
+              });
+            }),
+      ],
+    )
+
+
+
+RadioListTile		:带标题单选框组
+Column(
+      children: <Widget>[
+        RadioListTile(
+          value: 0,
+          groupValue: radioListValue,
+          onChanged: (value) {
+            setState(() {
+              radioListValue = value;
+            });
+          },
+          title: Text('单选框值1'),
+          subtitle: Text('描述1'),
+          secondary: Icon(Icons.filter_1),
+          //右侧图标
+          selected: radioListValue == 0,
+        ),
+        RadioListTile(
+          value: 1,
+          groupValue: radioListValue,
+          onChanged: (value) {
+            setState(() {
+              radioListValue = value;
+            });
+          },
+          title: Text('单选框值2'),
+          subtitle: Text('描述2'),
+          secondary: Icon(Icons.filter_2),
+          //右侧图标
+          selected: radioListValue == 0,
+        ),
+      ],
+    )
+
+
+
+CheckBox		:复选框
+new Checkbox(
+      value: this.isChecked,
+      activeColor: Colors.blue,
+      onChanged: (bool val) {
+        setState(() {
+          this.isChecked = val;
+        });
+      },
+    )
+
+
+	
+CheckboxListTile		:带标题复选框
+CheckboxListTile(
+      secondary: const Icon(Icons.airplanemode_active),
+      title: const Text('带标题复选框'),
+      value: isChecked,
+      onChanged: (bool value) {
+        setState(() {
+          isChecked = value;
+        });
+      },
+    )
+
+
+
+Image			:图片控件
+1.从本地读取图片
+new Image.asset("images/test.png")
+2.从网络读取图片
+Image.network('https://upload-images.jianshu.io/upload_images/6169789-91306f8ca35b8fe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240')
+
+
+进度条控件:ProgressBar
+日期与时间选择控件
+日期选择控件:DatePicker
+时间选择控件:TimePicker
+菜单
+弹出菜单:DropdownButton
+new DropdownButton<String>(
+    onChanged: (String newValue) {},
+    items: <String>['Menu1', 'Menu2', 'Menu3', 'Menu4']
+        .map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList(),
+  )
+
+
+
+

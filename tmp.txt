@@ -1,0 +1,85 @@
+P2P网络
+
+
+adb shell "echo com.gzlex.hui.guoziwei.guian >> /data/local/tmp/unpacker.config"
+adb pull /data/data/com.my.myshell_target/unpacker   D:\work_space\shell_test
+
+adb push D:\work_space\frida_server\frida-server-14.2.18-android-arm64  /data/local/tmp
+
+adb -s emulator-5556 
+
+objection -g com.my.fridademo explore
+
+python r0capture.py -U -f com.myself.network -v
+python r0capture.py -U com.myself.network -v -p network.pcap
+python r0capture.py -U -f com.myself.network -v
+python ./ssl_logger.py  -U -f com.myself.network
+python ./ssl_logger.py -v  -p test.pcap  com.myself.network
+
+python ssl_logger.py  -U -f com.myself.network
+python ssl_logger.py  -U com.myself.network  -v -p test.pcap
+
+python ./ssl_logger.py  -U -f com.myself.network
+frida -U com.myself.network explore -l F:/hook1.js
+
+frida -U --no-pause -f com.myself.network
+
+
+明文数据的收发包接口，正是由java.net.SocketOutputStream.socketWrite0和java.net.SocketInputStream.socketRead0
+
+frida -U com.myself.network explore -l  D:\repository\frida\FridaStudy\objection_note\SSLHook.js
+
+frida -U com.myself.network explore -l  D:\work_space\ssl_hook\SSLHook.js
+
+frida -U --no-pause -f com.myself.network  .\SSLHook.js
+frida -U --no-pause -f com.myself.network -l .\SSLHook.js
+frida -U --no-pause com.myself.network -l .\SSLHook.js
+frida -U com.my.fridademo -l .\test1.js
+
+org.conscrypt.ConscryptFileDescriptorSocket
+SSLInputStream
+
+OuterClass$InnerClass 这种方式只能hook 住静态内部类。
+非静态内部类 就要用其他方式了
+
+
+
+*libssl*,SSL_read,SSL_write,SSL_get_fd,SSL_get_session,SSL_SESSION_get_id,*libc*,getpeername,getsockname,ntohs,ntohl
+SSL_read,SSL_write,SSL_get_fd,SSL_get_session,SSL_SESSION_get_id,getpeername,getsockname,ntohs,ntohl
+
+
+lib :
+*libssl*
+names :
+SSL_read,SSL_write,SSL_get_fd,SSL_get_session,SSL_SESSION_get_id
+lib :
+*libc*
+
+names :
+getpeername,getsockname,ntohs,ntohl
+
+从当前情况看，几乎不可能撤销案件。
+嫌疑人要被批准刑事拘留，需要具备如下条件：
+我国《刑事诉讼法》第六十一条明确规定，刑事拘留适用范围是：
+(一)正在预备犯罪、实行犯罪或者在犯罪后即时被发觉的；
+(二)被害人或者在场亲眼看见的人指认他犯罪的；
+(三)在身边或者住处发现有犯罪证据的；
+(四)犯罪后企图自杀、逃跑或者在逃的；
+(五)有毁灭、伪造证据或者串供可能的； 
+(六)不讲真实姓名、住址、身份不明的；
+(七)有流窜作案、多次作案、结伙作案重大嫌疑的。
+可以看到，执行刑事拘留强制措施的前提，是确认有刑事案件发生，并且公安机关已经立案侦查，
+这些都是需要证据的，已立的公诉案件，如果要撤案，那么就很可能存在前期案件侦查滥用职权、玩忽职守、伪造证据等一系列问题，
+是要追究具体办案人员责任的。
+
+
+所谓经侦乱象而已，不会都立，但是立了的也就立了。大不了找不到证据取保候审。真心可恨，给当事人留下案底，而且看守所太伤人了。
+
+有些案子确实太小，说不定还达不到起诉条件，公安有可能不会移送检察院，而且还不会撤案，这就意味着案子继续挂着，不了了之了
+
+
+你好，我是河南司法系统的纪检干部。现在在政法队伍教育整顿期间，对政法队伍违纪违法案件严肃查处。看守所属于公安系统，你可以向当地纪委监委派驻公安局纪检监察组举报或者向当地纪委监委举报。举报方式包括来信、来访、12388热线和网站（网站搜索结果可能被百度屏蔽），举报受理范围等事项可以在纪委监委网站找到。举报建议实名以便于我们核实证据和反馈处理结果。监狱属于司法系统，包括地市监狱和省属监狱（一般而言xx市监狱是市属监狱，不带市字的是省属监狱）涉及地市监狱问题请向当地司法局派驻纪检监察组或该市纪委监委举报，省属监狱请向省司法厅派驻纪检监察组或省纪委监委举报。
+
+
+63 966 827 2243
+63 966 827 2243

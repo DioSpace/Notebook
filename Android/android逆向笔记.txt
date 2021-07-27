@@ -1,0 +1,10 @@
+Android 逆向工具介绍
+
+apktool  
+     作用：资源文件获取，可以提取出图片文件和布局文件进行使用查看
+
+dex2jar
+     作用：将apk反编译成java源码（classes.dex转化成jar文件）
+
+jd-gui
+     作用：查看APK中classes.dex转化成出的jar文件，即源码文件
